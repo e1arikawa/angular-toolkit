@@ -171,12 +171,12 @@ export function prepareServerConfig(options: CordovaServeBuilderSchema, root: st
     let { input, output, ignore = [], glob } = asset;
     input = resolve(root, input).replace(/\\/g, '/');
     input = input.endsWith('/') ? input : input + '/';
-    output = output.endsWith('/') ? output : output + '/';
+    output = output!.endsWith('/') ? output : output + '/';
 
     return {
       context: input,
       // Now we remove starting slash to make Webpack place it from the output root.
-      to: output.replace(/^\//, ''),
+      to: output!.replace(/^\//, ''),
       from: glob,
       noErrorOnMissing: true,
       globOptions: {
